@@ -54,7 +54,7 @@ const CSS = `
   .np-now-card{padding:34px 32px}
 }
 
-.np-real{padding:0 0 clamp(40px,6vw,72px)}
+.np-real{grid-column:1/-1;width:100%;min-width:0;padding:0 0 clamp(40px,6vw,72px)}
 .np-real-head{max-width:760px;margin:0 0 clamp(32px,5vw,56px)}
 .np-real-t{margin:14px 0 0;font:400 clamp(2rem,4.6vw,3.4rem)/1.08 var(--serif,Georgia,serif);color:#0D0D0D}
 .np-real-lead{margin:16px 0 0;font:400 1.05rem/1.7 var(--sans,sans-serif);color:#4f4b43}
@@ -303,7 +303,7 @@ module.exports = async function patch(publicDir) {
   const iWrap = t.indexOf('<div class="wrap">', iRes);
   must(iWrap > 0, '.wrap de #resultats');
   const at = iWrap + '<div class="wrap">'.length;
-  t = t.slice(0, at) + '\n' + REAL_HTML + '\n<div class="np-sep" aria-hidden="true"></div>\n' + t.slice(at);
+  t = t.slice(0, at) + '\n' + REAL_HTML + '\n<div class="np-sep" aria-hidden="true" style="grid-column:1/-1;height:1px;background:rgba(13,13,13,.12);margin:0 0 clamp(32px,5vw,56px)"></div>\n' + t.slice(at);
 
   /* 4. Fenêtre de la carte + script */
   must(t.includes('</body>'), '</body>');
