@@ -34,7 +34,7 @@ const CSS = `
 /* ===== NOESIS · En ce moment + Réalisations (nov. 2026) ===== */
 .np-now{position:relative;background:#101010;color:var(--tx,#F6F5F2);border-top:1px solid rgba(184,154,88,.28);border-bottom:1px solid rgba(184,154,88,.28)}
 .np-now-in{display:grid;gap:22px 64px;padding-top:clamp(56px,8vw,104px);padding-bottom:clamp(56px,8vw,104px);grid-template-columns:1fr;grid-template-areas:"kick" "title" "act" "lead" "card" "valid"}
-.np-now-kick{grid-area:kick;display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;margin:0;font:500 .75rem/1 var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:var(--tx-3,#8F8B82)}
+.np-now-kick{grid-area:kick;display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;margin:0;font:500 .8125rem/1 var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:var(--tx-3,#8F8B82)}
 .np-now-kick b{font-weight:500;color:var(--gold,#B89A58)}
 .np-now-kick i{width:28px;height:1px;background:linear-gradient(90deg,var(--gold,#B89A58),transparent)}
 .np-now-t{grid-area:title;margin:0;font:400 clamp(1.9rem,4.4vw,3.1rem)/1.1 var(--serif,Georgia,serif);letter-spacing:-.01em}
@@ -44,9 +44,9 @@ const CSS = `
 .np-now-act .btn{width:100%;justify-content:center;min-height:56px}
 .np-now-act .txt-link{align-self:flex-start}
 .np-now-card{grid-area:card;padding:26px 24px;border:1px solid rgba(184,154,88,.34);background:rgba(246,245,242,.03)}
-.np-now-incl{margin:0 0 14px;font:500 .8rem/1.5 var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:var(--gold,#B89A58)}
+.np-now-incl{margin:0 0 14px;font:500 .8125rem/1.5 var(--mono,monospace);letter-spacing:.12em;text-transform:uppercase;color:var(--gold,#B89A58)}
 .np-now-desc{margin:0;font:400 1rem/1.7 var(--sans,sans-serif);color:var(--tx-2,#C4C0B6)}
-.np-now-valid{grid-area:valid;margin:6px 0 0;font:500 .75rem/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:var(--tx-3,#8F8B82)}
+.np-now-valid{grid-area:valid;margin:6px 0 0;font:500 .8125rem/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase;color:var(--tx-3,#8F8B82)}
 @media (min-width:900px){
   .np-now-in{grid-template-columns:1.1fr .9fr;grid-template-areas:"kick kick" "title card" "lead card" "act card" "valid valid";align-items:start}
   .np-now-act{flex-direction:row;align-items:center;flex-wrap:wrap;gap:14px 26px}
