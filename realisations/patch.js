@@ -33,7 +33,7 @@ const M = (f) => 'assets/realisations/' + f + '?v=' + CFG.version;
 const CSS = `
 /* ===== NOESIS · En ce moment + Réalisations (nov. 2026) ===== */
 .np-now{position:relative;background:#101010;color:var(--tx,#F6F5F2);border-top:1px solid rgba(184,154,88,.28);border-bottom:1px solid rgba(184,154,88,.28)}
-.np-now-in{display:grid;gap:22px 64px;padding:clamp(56px,8vw,104px) 0;grid-template-columns:1fr;grid-template-areas:"kick" "title" "act" "lead" "card" "valid"}
+.np-now-in{display:grid;gap:22px 64px;padding-top:clamp(56px,8vw,104px);padding-bottom:clamp(56px,8vw,104px);grid-template-columns:1fr;grid-template-areas:"kick" "title" "act" "lead" "card" "valid"}
 .np-now-kick{grid-area:kick;display:flex;align-items:center;flex-wrap:wrap;gap:10px 14px;margin:0;font:500 .75rem/1 var(--mono,monospace);letter-spacing:.18em;text-transform:uppercase;color:var(--tx-3,#8F8B82)}
 .np-now-kick b{font-weight:500;color:var(--gold,#B89A58)}
 .np-now-kick i{width:28px;height:1px;background:linear-gradient(90deg,var(--gold,#B89A58),transparent)}
