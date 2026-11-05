@@ -15,6 +15,7 @@ const CFG = {
     carte: 'https://chez-sam-valence.vercel.app/carte.html'
   },
   instagram: 'https://www.instagram.com/noesis_ia/',
+  pay: 'https://pay.sumup.com/b2c/QCYZB6P6',
   retrait: '2026-12-01T00:00:00+01:00', // 1er décembre 2026, 00 h 00, heure de Paris
   mediaBase: 'https://raw.githubusercontent.com/jlbridon13-glitch/Noesis-ia/apercu-realisations/realisations/',
   brandBase: 'https://raw.githubusercontent.com/jlbridon13-glitch/Noesis-ia/apercu-realisations/brand/',
@@ -132,6 +133,7 @@ const NOW_HTML = `
     <p class="np-now-lead">Pour les artisans, commerçants et indépendants qui veulent présenter leur activité en ligne et faciliter les demandes de contact.</p>
     <div class="np-now-act">
       <a class="btn btn-gold" href="${CFG.instagram}" target="_blank" rel="noopener">Parler de mon projet${ARR}</a>
+      <a class="btn btn-ghost np-pay" href="${CFG.pay}" target="_blank" rel="noopener">Réserver et payer en ligne${ARR}</a>
       <a class="txt-link" href="#diagnostic" data-offer="" data-subject="Black Web November — Site vitrine à 199 € HT">Ou remplir le formulaire de diagnostic ${ARR}</a>
     </div>
     <div class="np-now-card">
