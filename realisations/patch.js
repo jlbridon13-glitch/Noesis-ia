@@ -101,6 +101,7 @@ const CSS = `
 .np-carte-view .m{display:none}
 .np-carte-act{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
 .np-carte-act .btn{min-height:52px}
+.np-carte-note{margin:14px 0 0;font:400 .85rem/1.6 var(--sans,sans-serif);color:#6a655b}
 @media (min-width:900px){.np-carte{grid-template-columns:.8fr 1.2fr;align-items:center}}
 @media (max-width:640px){
   .np-carte-view{max-height:560px;width:min(340px,88vw);margin:0 auto}
@@ -127,7 +128,7 @@ const NOW_HTML = `
     <p class="np-now-lead">Pour les artisans, commerçants et indépendants qui veulent présenter leur activité en ligne et faciliter les demandes de contact.</p>
     <div class="np-now-act">
       <a class="btn btn-gold" href="${CFG.instagram}" target="_blank" rel="noopener">Parler de mon projet${ARR}</a>
-      <a class="txt-link" href="#diagnostic">Ou remplir le formulaire de diagnostic ${ARR}</a>
+      <a class="txt-link" href="#diagnostic" data-offer="" data-subject="Black Web November — Site vitrine à 199 € HT">Ou remplir le formulaire de diagnostic ${ARR}</a>
     </div>
     <div class="np-now-card">
       <p class="np-now-incl">Jusqu’à 5 pages · Audit marketing et plan d’action offerts</p>
@@ -200,8 +201,8 @@ const REAL_HTML = `
             <p>Pizzas, base tomate, base crème, spéciales : chaque plat avec sa photo, ses ingrédients et son prix, en deux colonnes sur ordinateur et en une seule sur téléphone.</p>
             <div class="np-carte-act">
               <button class="btn btn-dark" type="button" data-np-lightbox aria-haspopup="dialog">Ouvrir la carte en grand</button>
-              <a class="btn btn-ghost" href="${CFG.sam.carte}" target="_blank" rel="noopener">Voir la carte${ARR}</a>
             </div>
+            <p class="np-carte-note">Aperçu de la carte : ouvrez-la en grand pour voir tous les plats et les prix.</p>
           </div>
           <div class="np-carte-view">
             <img class="d" src="${M('cs-carte-d.webp')}" width="1220" height="1244" loading="lazy" decoding="async" alt="La carte des pizzas de Chez Sam sur ordinateur, avec photos, ingrédients et prix">
