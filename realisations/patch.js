@@ -17,8 +17,12 @@ const CFG = {
   instagram: 'https://www.instagram.com/noesis_ia/',
   retrait: '2026-12-01T00:00:00+01:00', // 1er décembre 2026, 00 h 00, heure de Paris
   mediaBase: 'https://raw.githubusercontent.com/jlbridon13-glitch/Noesis-ia/apercu-realisations/realisations/',
+  brandBase: 'https://raw.githubusercontent.com/jlbridon13-glitch/Noesis-ia/apercu-realisations/brand/',
+  siteUrl: 'https://noesis-ia.vercel.app',
   version: '20261105'
 };
+
+const BRAND = ['og-noesis.png', 'favicon-32.png', 'favicon-64.png', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png'];
 
 const MEDIA = [
   'md-home-d.webp', 'md-home-m.webp', 'md-poster.webp', 'md-demo.mp4',
@@ -281,6 +285,26 @@ async function fetchMedia(outDir) {
   }
 }
 
+async function fetchBrand(outDir) {
+  fs.mkdirSync(outDir, { recursive: true });
+  const local = process.env.NP_BRAND_DIR;
+  for (const f of BRAND) {
+    if (local) { fs.copyFileSync(path.join(local, f), path.join(outDir, f)); continue; }
+    let lastErr;
+    for (let k = 0; k < 4; k++) {
+      try {
+        const r = await fetch(CFG.brandBase + f);
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const buf = Buffer.from(await r.arrayBuffer());
+        if (buf.length < 500) throw new Error('fichier trop petit');
+        fs.writeFileSync(path.join(outDir, f), buf);
+        lastErr = null; break;
+      } catch (e) { lastErr = e; await new Promise((res) => setTimeout(res, 800 * (k + 1))); }
+    }
+    if (lastErr) throw new Error('Logo introuvable : ' + f + ' (' + lastErr.message + ')');
+  }
+}
+
 /* ---------- Patch ---------- */
 module.exports = async function patch(publicDir) {
   const file = path.join(publicDir, 'index.html');
@@ -306,11 +330,22 @@ module.exports = async function patch(publicDir) {
   const at = iWrap + '<div class="wrap">'.length;
   t = t.slice(0, at) + '\n' + REAL_HTML + '\n<div class="np-sep" aria-hidden="true" style="grid-column:1/-1;height:1px;background:rgba(13,13,13,.12);margin:0 0 clamp(32px,5vw,56px)"></div>\n' + t.slice(at);
 
+  /* 3b. Logo officiel : image de partage HD + icônes nettes (l'en-tête et le pied de page restent en vectoriel) */
+  const og = CFG.siteUrl + '/assets/brand/og-noesis.png?v=' + CFG.version;
+  t = t.replace(/<meta property="og:image" content="[^"]*">/, '<meta property="og:image" content="' + og + '">')
+       .replace(/<meta property="og:image:type" content="[^"]*">/, '<meta property="og:image:type" content="image/png">')
+       .replace(/<meta property="og:image:width" content="[^"]*">/, '<meta property="og:image:width" content="1200">')
+       .replace(/<meta property="og:image:height" content="[^"]*">/, '<meta property="og:image:height" content="630">')
+       .replace(/<meta name="twitter:image" content="[^"]*">/, '<meta name="twitter:image" content="' + og + '">')
+       .replace(/<link rel="icon"[^>]*>/, '<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png?v=' + CFG.version + '"><link rel="icon" type="image/png" sizes="64x64" href="assets/brand/favicon-64.png?v=' + CFG.version + '"><link rel="icon" type="image/png" sizes="192x192" href="assets/brand/icon-192.png?v=' + CFG.version + '">')
+       .replace(/<link rel="apple-touch-icon"[^>]*>/, '<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png?v=' + CFG.version + '">');
+
   /* 4. Fenêtre de la carte + script */
   must(t.includes('</body>'), '</body>');
   t = t.replace('</body>', LIGHTBOX + '<script id="np-js">' + JS + '</script>\n</body>');
 
   fs.writeFileSync(file, t);
   await fetchMedia(path.join(publicDir, 'assets', 'realisations'));
+  await fetchBrand(path.join(publicDir, 'assets', 'brand'));
   return t.length;
 };
